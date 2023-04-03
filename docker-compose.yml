@@ -1,0 +1,24 @@
+version: '3.19'
+
+services:
+  mysql:
+    image: mysql
+    container_name: nest_auth_mysql_c
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: nest-auth
+      MYSQL_USER: nest-auth
+      MYSQL_PASSWORD: nest-auth
+    ports:
+      - 3306:3306
+    volumes:
+      - ./db/mysql:/data
+
+  adminer:
+    image: adminer
+    container_name: nest_auth_adminer_c
+    restart: always
+    ports:
+      - 8080:8080
